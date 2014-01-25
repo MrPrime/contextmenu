@@ -1,7 +1,7 @@
-# an amazing ContextMenu Widget based on jQuery 1.7+
+# An Amazing ContextMenu Widget based on jQuery 1.7+
 > support IE8+ and other modern browsers 
 
-## how to use
+### how to use
 
 let's say you have a `div.right-click` in `body` tag
 
@@ -16,7 +16,7 @@ let's say you have a `div.right-click` in `body` tag
 **selector** : use css selector to target dom elements
 
 ```js
-	selector: '.right-click'
+selector: '.right-click'
 ```
 
 **callback** : a callback which will be called when you click one menu item
