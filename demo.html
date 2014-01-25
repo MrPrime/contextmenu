@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/contextmenu.min.css">
+	<style>
+		.right-click {
+			border: 1px solid #acacac;
+			background-color: #f1f1f1;
+			width: 250px;
+			margin-bottom: 20px;
+			padding: 10px;
+		}
+		body {
+			height: 900px;
+		}
+	</style>
+</head>
+<body>
+	<div id="one" class="right-click">
+		<p>right click one</p>
+		<p>try to change background color</p>
+		<p>try to change font size</p>
+	</div>
+
+	<div>
+		<p><button id="btn1" data-status="0">disable blue button</button></p>
+		<p><button id="btn2" data-status="0">disable font size submenu</button></p>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/contextmenu.min.js"></script>
+	<script>
+		var $div = $('#one');
+
+		// ContextMenu instance
+		var cm = new ContextMenu({
+			selector: '.right-click',
+			callback: function(cmd, options) {
+				switch (cmd) {
+					case 'font_normal':
+						$div[0].style.fontSize = '13px';break;
+					case 'font_large':
+						$div[0].style.fontSize = '16px';break;
+					case 'bg_red':
+						$div[0].style.backgroundColor = 'red';break;
+					case 'bg_blue':
+						$div[0].style.backgroundColor = 'blue';break;
+				}
+			},
+			items: [{
+				text: 'background color',
+				title: 'change background color',
+				cmd: 'change_bg',
+				items: [{
+					text: 'red',
+					cmd: 'bg_red',
+					icon: 'images/red.gif'
+				}, {
+					text: 'blue',
+					cmd: 'bg_blue',
+					icon: 'images/blue.gif'
+				}]
+			}, {
+				text: 'font size',
+				cmd: 'change_fs',
+				items: [{
+					text: 'normal',
+					cmd: 'font_normal',
+				}, {
+					text: 'large',
+					cmd: 'font_large'
+				}]
+			}, 'sep', {
+				text: "author blog",
+				url: 'http://www.cnblogs.com/AndyWithPassion/',
+				cmd: 'gotoblog',
+				title: "link to author's blog",
+				target: '_blank'
+			}]
+		});
+
+		$('#btn1').on('click', function(event) {
+			var s = this.getAttribute('data-status');
+
+			if(s == '0') {
+				cm.disableItem('bg_blue');
+				this.setAttribute('data-status', 1);
+				this.innerHTML = 'enable blue button';
+			} else {
+				cm.enableItem('bg_blue');
+				this.setAttribute('data-status', 0);
+				this.innerHTML = 'disable blue button';
+			}
+		});
+
+		$('#btn2').on('click', function(event) {
+			var s = this.getAttribute('data-status');
+
+			if(s == '0') {
+				cm.disableItem('change_fs');
+				this.setAttribute('data-status', 1);
+				this.innerHTML = 'enable font size submenu';
+			} else {
+				cm.enableItem('change_fs');
+				this.setAttribute('data-status', 0);
+				this.innerHTML = 'disable font size submenu';
+			}
+		});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "contextmenu",
+  "version": "1.0.0",
+  "description": "a contextmenu widget based on jquery",
+  "keywords": [
+    "contextmenu",
+    "js",
+    "jquery"
+  ],
+  "author": "AndrewZhang",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-cssmin": "~0.7.0"
+  }
+}
